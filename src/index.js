@@ -45,7 +45,7 @@ class Backend {
 
 
   read(language, namespace, callback) {
-    let filename = this.services.interpolator.interpolate(this.options.loadPath, { lng: lng, ns: namespace });
+    let filename = this.services.interpolator.interpolate(this.options.loadPath, { lng: language, ns: namespace });
 
     readFile(filename, (err, resources) => {
       if (err) return callback(err, false); // no retry
