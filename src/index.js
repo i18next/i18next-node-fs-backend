@@ -49,7 +49,7 @@ class Backend {
 
     readFile(filename, (err, resources) => {
       if (err) return callback(err, false); // no retry
-      callback(resources);
+      callback(null, resources);
     });
   }
 
