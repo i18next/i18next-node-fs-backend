@@ -17,7 +17,7 @@ Wiring up:
 
 ```js
 var i18next = require('i18next');
-var Backend = require('i18next-xhr-backend');
+var Backend = require('i18next-node-fs-backend');
 
 i18next
   .use(Backend)
@@ -47,7 +47,7 @@ Options can be passed in:
 
 ```js
 var i18next = require('i18next');
-var Backend = require('i18next-xhr-backend');
+var Backend = require('i18next-node-fs-backend');
 
 i18next
   .use(Backend)
@@ -59,14 +59,14 @@ i18next
 on construction:
 
 ```js
-var Backend = require('i18next-xhr-backend');
+var Backend = require('i18next-node-fs-backend');
 var backend = new Backend(null, options);
 ```
 
 by calling init:
 
 ```js
-var Backend = require('i18next-xhr-backend');
+var Backend = require('i18next-node-fs-backend');
 var backend = new Backend();
 backend.init(options);
 ```
