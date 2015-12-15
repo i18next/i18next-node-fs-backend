@@ -66,7 +66,7 @@ class Backend {
       readFile(filename, (err, resources) => {
         if (err) resources = {};
 
-        utils.setPath(resources, key.split['.'], fallbackValue); // TODO: use this.coreOptions.keySeparator;
+        utils.setPath(resources, key.split(this.coreOptions.keySeparator || '.'), fallbackValue);
 
         fs.writeFile(filename, JSON.stringify(resources, null, this.options.jsonIndent), callback);
       });
