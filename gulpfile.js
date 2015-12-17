@@ -21,27 +21,6 @@ gulp.task('eslint', function () {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true,
-    reporters: [ 'spec', 'coverage' ],
-  }, done).start();
-});
-
-gulp.task('test_compat', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.backward.conf.js'
-  }, done).start();
-});
-
-
-gulp.task('tdd', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js'
-  }, done).start();
-});
-
 gulp.task('babel', function () {
   return gulp.src('./src/**/*.js')
     .pipe(babel())
