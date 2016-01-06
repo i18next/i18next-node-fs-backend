@@ -7,8 +7,7 @@ var gulp = require('gulp'),
     tag_version = require('gulp-tag-version'),
     shell = require('gulp-shell'),
     argv = require('yargs').argv,
-    eslint = require('gulp-eslint'),
-    Server = require('karma').Server;
+    eslint = require('gulp-eslint');
 
 var pkg = require('./package.json');
 
