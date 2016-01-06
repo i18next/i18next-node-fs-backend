@@ -1,5 +1,10 @@
 # Introduction
 
+[![Travis](https://img.shields.io/travis/i18next/i18next-node-fs-backend/master.svg?style=flat-square)](https://travis-ci.org/i18next/i18next-node-fs-backend)
+[![Coveralls](https://img.shields.io/coveralls/i18next/i18next-node-fs-backend/master.svg?style=flat-square)](https://coveralls.io/github/i18next/i18next-node-fs-backend)
+[![npm version](https://img.shields.io/npm/v/i18next-node-fs-backend.svg?style=flat-square)](https://www.npmjs.com/package/i18next-node-fs-backend)
+[![David](https://img.shields.io/david/i18next/i18next-node-fs-backend.svg?style=flat-square)](https://david-dm.org/i18next/i18next-node-fs-backend)
+
 This is a i18next backend to be used node.js. It will load resources from filesystem. Right now it supports following filetypes:
 
 - .json
