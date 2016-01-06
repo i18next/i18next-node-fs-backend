@@ -94,11 +94,6 @@ function inc(version) {
     ]));
 }
 
-function watch() {
-  return compile(true);
-};
-
-gulp.task('concat', function() { return compile(); });
 gulp.task('watch', function() { return watch(); });
 gulp.task('bump', function() { return inc(argv.v); });
 
