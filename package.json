@@ -27,7 +27,7 @@
     "gulp-git": "1.6.1",
     "gulp-if": "2.0.0",
     "gulp-prompt": "0.1.2",
-    "gulp-shell": "0.5.1",
+    "gulp-shell": "0.5.2",
     "gulp-tag-version": "1.3.0",
     "i18next": "2.0.22",
     "istanbul": "0.4.1",
