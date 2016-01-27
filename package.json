@@ -33,7 +33,7 @@
     "istanbul": "0.4.1",
     "mocha": "2.3.4",
     "mockery": "1.4.0",
-    "sinon": "1.17.2",
+    "sinon": "1.17.3",
     "watchify": "3.7.0",
     "yargs": "3.31.0"
   },
