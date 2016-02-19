@@ -46,6 +46,9 @@ As with all modules you can either pass the constructor function (class) to the 
 }
 ```
 
+**hint** {{lng}}, {{ns}} use the same prefix, suffix you define in interpolation for translations!!!
+
+
 Options can be passed in:
 
 **preferred** - by setting options.backend in i18next.init:
