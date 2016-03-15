@@ -2,6 +2,7 @@ import * as utils from './utils';
 import fs from 'fs';
 import path from 'path';
 import JSON5 from 'json5';
+import YAML from 'js-yaml';
 
 function getDefaults() {
   return {
@@ -18,9 +19,16 @@ function readFile(filename, callback) {
     } else {
       let result;
       try {
-        result = path.extname(filename) === '.json5' ?
-          JSON5.parse(data.replace(/^\uFEFF/, '')) :
-          JSON.parse(data.replace(/^\uFEFF/, '')); // strip byte-order mark
+        switch(path.extname(filename)) {
+          case '.json5':
+            result = JSON5.parse(data.replace(/^\uFEFF/, ''));
+            break;
+          case '.yml':
+            result = YAML.safeLoad(data.replace(/^\uFEFF/, ''));
+            break;
+          default:
+            result = JSON.parse(data.replace(/^\uFEFF/, ''));
+        }
       } catch (err) {
         err.message = 'error parsing ' + filename + ': ' + err.message;
         return callback(err);
