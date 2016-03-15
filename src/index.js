@@ -19,15 +19,16 @@ function readFile(filename, callback) {
     } else {
       let result;
       try {
+        data = data.replace(/^\uFEFF/, '');
         switch(path.extname(filename)) {
           case '.json5':
-            result = JSON5.parse(data.replace(/^\uFEFF/, ''));
+            result = JSON5.parse(data);
             break;
           case '.yml':
-            result = YAML.safeLoad(data.replace(/^\uFEFF/, ''));
+            result = YAML.safeLoad(data);
             break;
           default:
-            result = JSON.parse(data.replace(/^\uFEFF/, ''));
+            result = JSON.parse(data);
         }
       } catch (err) {
         err.message = 'error parsing ' + filename + ': ' + err.message;
