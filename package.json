@@ -10,6 +10,7 @@
   "homepage": "https://github.com/i18next/i18next-node-fs-backend",
   "bugs": "https://github.com/i18next/i18next-node-fs-backend/issues",
   "dependencies": {
+    "js-yaml": "^3.5.4",
     "json5": "0.4.0"
   },
   "devDependencies": {
@@ -38,7 +39,8 @@
     "yargs": "3.31.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "transpile": "node node_modules/babel/bin/babel ./src/ -d ./lib"
   },
   "author": "Jan Mühlemann <jan.muehlemann@gmail.com> (https://github.com/jamuhl)",
   "license": "MIT"
