@@ -10,7 +10,7 @@
   "homepage": "https://github.com/i18next/i18next-node-fs-backend",
   "bugs": "https://github.com/i18next/i18next-node-fs-backend/issues",
   "dependencies": {
-    "js-yaml": "3.5.4",
+    "js-yaml": "3.5.5",
     "json5": "0.4.0"
   },
   "devDependencies": {
