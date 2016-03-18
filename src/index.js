@@ -70,7 +70,7 @@ class Backend {
     if (typeof languages === 'string') languages = [languages];
 
     languages.forEach(lng => {
-      this.queue.apply(this, arguments);
+      this.queue.call(this, lng, namespace, key, fallbackValue, callback);
     });
   }
 
