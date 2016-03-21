@@ -69,14 +69,29 @@ class Backend {
     if (!callback) callback = () => {};
     if (typeof languages === 'string') languages = [languages];
 
+    let todo = languages.length;
+    function done() {
+      if (!--todo) callback && callback();
+    }
+
     languages.forEach(lng => {
-      this.queue.call(this, lng, namespace, key, fallbackValue, callback);
+      this.queue.call(this, lng, namespace, key, fallbackValue, done);
     });
   }
 
   // write queue
+  write() {
+    for (let lng in this.queuedWrites) {
+      const namespaces = this.queuedWrites[lng];
+      if (lng !== 'locks') {
+        for (let ns in namespaces) {
+          this.writeFile(lng, ns);
+        }
+      }
+    }
+  }
 
-  write(lng, namespace) {
+  writeFile(lng, namespace) {
     let lock = utils.getPath(this.queuedWrites, ['locks', lng, namespace]);
     if (lock) return;
 
@@ -105,7 +120,7 @@ class Backend {
           });
 
           // rerun
-          this.debouncedWrite(lng, namespace);
+          this.debouncedWrite();
         });
       });
     }
@@ -114,7 +129,7 @@ class Backend {
   queue(lng, namespace, key, fallbackValue, callback) {
     utils.pushPath(this.queuedWrites, [lng, namespace], {key: key, fallbackValue: fallbackValue || '', callback: callback});
 
-    this.debouncedWrite(lng, namespace);
+    this.debouncedWrite();
   }
 
 }

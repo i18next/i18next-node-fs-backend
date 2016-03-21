@@ -4,6 +4,7 @@ var expect = require('chai').expect;
 var Interpolator = require('i18next/lib/Interpolator');
 
 var test3Save = 0;
+var test4Save = 0;
 
 var fsMock = {
   readFile: function (path, encoding, cb) {
@@ -25,6 +26,10 @@ var fsMock = {
       expect(data).to.be.eql(JSON.stringify({ key1: '1', key2: '2' }, null, 2));
     }
     else if (path.indexOf('test3.missing.json') > -1 && test3Save > 0) {
+      expect(data).to.be.eql(JSON.stringify({ key1: '1', key2: '2', key3: '3', key4: '4' }, null, 2));
+    }
+    else if (path.indexOf('test4.missing.json') > -1) {
+      test4Save = test4Save + 1;
       expect(data).to.be.eql(JSON.stringify({ key1: '1', key2: '2', key3: '3', key4: '4' }, null, 2));
     }
 
@@ -85,6 +90,16 @@ describe('backend', function() {
           done();
         });
       }, 200);
+    });
+  });
+
+  it('create multiple with multiple languages to write to (saveMissingTo=all)', function(done) {
+    backend.create(['en', 'de'], 'test4', 'key1', '1')
+    backend.create(['en', 'de'], 'test4', 'key2', '2')
+    backend.create(['en', 'de'], 'test4', 'key3', '3')
+    backend.create(['en', 'de'], 'test4', 'key4', '4', function() {
+      expect(test4Save).to.equal(2);
+      done();
     });
   });
 
