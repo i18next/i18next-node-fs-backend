@@ -1,7 +1,7 @@
 var mockery = require('mockery');
 var expect = require('chai').expect;
 
-var Interpolator = require('i18next/lib/Interpolator');
+var Interpolator = require('i18next/dist/commonjs/Interpolator').default;
 
 var test3Save = 0;
 var test4Save = 0;
