@@ -25,6 +25,7 @@ function readFile(filename, callback) {
             result = JSON5.parse(data);
             break;
           case '.yml':
+          case '.yaml':
             result = YAML.safeLoad(data);
             break;
           default:
