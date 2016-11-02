@@ -1,6 +1,6 @@
 {
   "name": "i18next-node-fs-backend",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "node.js backend layer for i18next using fs module to load resources from filesystem",
   "main": "./lib/index.js",
   "keywords": [
