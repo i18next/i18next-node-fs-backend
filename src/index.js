@@ -13,31 +13,48 @@ function getDefaults() {
 }
 
 function readFile(filename, callback) {
-  fs.readFile(filename, 'utf8', function(err, data) {
-    if (err) {
-      callback(err);
-    } else {
-      let result;
-      try {
-        data = data.replace(/^\uFEFF/, '');
-        switch(path.extname(filename)) {
-          case '.json5':
-            result = JSON5.parse(data);
-            break;
-          case '.yml':
-          case '.yaml':
-            result = YAML.safeLoad(data);
-            break;
-          default:
-            result = JSON.parse(data);
-        }
-      } catch (err) {
-        err.message = 'error parsing ' + filename + ': ' + err.message;
-        return callback(err);
+  const extension = path.extname(filename);
+  let result;
+
+  if (/^\.(js|ts)$/.test(extension)) {
+    try {
+      const file = require(filename);
+      result = file.default ? file.default : file;
+
+      if (typeof result !== 'object') {
+        return callback(new Error('A resource file must export an object.'));
       }
+
       callback(null, result);
+    } catch (err) {
+      callback(err);
     }
-  });
+  } else {
+    fs.readFile(filename, 'utf8', function(err, data) {
+      if (err) {
+        callback(err);
+      } else {
+        try {
+          data = data.replace(/^\uFEFF/, '');
+          switch(extension) {
+            case '.json5':
+              result = JSON5.parse(data);
+              break;
+            case '.yml':
+            case '.yaml':
+              result = YAML.safeLoad(data);
+              break;
+            default:
+              result = JSON.parse(data);
+          }
+        } catch (err) {
+          err.message = 'error parsing ' + filename + ': ' + err.message;
+          return callback(err);
+        }
+        callback(null, result);
+      }
+    });
+  }
 }
 
 class Backend {

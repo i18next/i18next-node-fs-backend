@@ -1,5 +1,6 @@
 var mockery = require('mockery');
 var expect = require('chai').expect;
+var path = require('path');
 
 var Interpolator = require('i18next/dist/commonjs/Interpolator').default;
 
@@ -39,13 +40,14 @@ var fsMock = {
 
 
 describe('backend', function() {
+  var Backend;
   var backend;
 
   before(function() {
     mockery.enable();
     mockery.registerMock('fs', fsMock);
 
-    var Backend = require('../lib');
+    Backend = require('../lib');
     backend = new Backend({
       interpolator: new Interpolator()
     }, {
@@ -65,6 +67,33 @@ describe('backend', function() {
     });
   });
 
+  it('read javascript files', function(done) {
+    backend = new Backend({
+      interpolator: new Interpolator()
+    }, {
+      loadPath: path.join(__dirname, '/locales/{{lng}}/{{ns}}.js')
+    });
+
+    backend.read('en', 'test', function(err, data) {
+      expect(err).to.be.not.ok;
+      expect(data).to.eql({key: 'passing', evaluated: 2});
+      done();
+    });
+  });
+
+  it('fail if a bad js file is provided', function(done) {
+    backend = new Backend({
+      interpolator: new Interpolator()
+    }, {
+      loadPath: path.join(__dirname, '/locales/{{lng}}/{{ns}}.js')
+    });
+
+    backend.read('en', 'bad', function(err, data) {
+      expect(err).to.be.ok;
+      expect(data).to.eql(false);
+      done();
+    });
+  });
 
   it('create simple', function(done) {
     backend.create('en', 'test', 'some.key', 'myDefault', function() {
