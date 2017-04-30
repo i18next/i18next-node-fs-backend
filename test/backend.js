@@ -47,7 +47,7 @@ describe('backend', function() {
     mockery.enable();
     mockery.registerMock('fs', fsMock);
 
-    Backend = require('../lib');
+    Backend = require('../lib').default;
     backend = new Backend({
       interpolator: new Interpolator()
     }, {

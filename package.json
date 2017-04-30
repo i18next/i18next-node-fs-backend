@@ -2,7 +2,7 @@
   "name": "i18next-node-fs-backend",
   "version": "0.1.3",
   "description": "node.js backend layer for i18next using fs module to load resources from filesystem",
-  "main": "./lib/index.js",
+  "main": "./index.js",
   "keywords": [
     "i18next",
     "i18next-backend"
@@ -14,22 +14,14 @@
     "json5": "0.5.0"
   },
   "devDependencies": {
-    "babel": "5.8.21",
-    "babel-core": "6.7.2",
-    "babel-eslint": "4.1.0",
+    "babel-cli": "6.7.7",
+    "babel-core": "6.7.7",
+    "babel-eslint": "5.0.0",
+    "babel-preset-es2015": "6.3.13",
+    "babel-preset-stage-0": "6.5.0",
     "chai": "^3.4.1",
     "coveralls": "2.11.6",
     "eslint": "2.4.0",
-    "gulp": "3.9.0",
-    "gulp-babel": "5.3.0",
-    "gulp-bump": "2.0.1",
-    "gulp-eslint": "1.1.1",
-    "gulp-filter": "4.0.0",
-    "gulp-git": "1.6.1",
-    "gulp-if": "2.0.0",
-    "gulp-prompt": "0.1.2",
-    "gulp-shell": "0.5.1",
-    "gulp-tag-version": "1.3.0",
     "i18next": "2.3.5",
     "istanbul": "0.4.1",
     "mocha": "2.3.4",
@@ -40,7 +32,10 @@
   },
   "scripts": {
     "test": "mocha",
-    "transpile": "node node_modules/babel/bin/babel ./src/ -d ./lib"
+    "transpile": "babel src -d lib",
+    "build": "npm run transpile",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags && rm -rf build/temp"
   },
   "author": "Jan Mühlemann <jan.muehlemann@gmail.com> (https://github.com/jamuhl)",
   "license": "MIT"
