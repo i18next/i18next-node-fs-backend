@@ -17,14 +17,18 @@ function readFile(filename, callback) {
   let result;
 
   if (/^\.(js|ts)$/.test(extension)) {
-    const file = require(filename);
-    result = file.default ? file.default : file;
+    try {
+      const file = require(filename);
+      result = file.default ? file.default : file;
 
-    if (typeof result !== 'object') {
-      return callback(new Error('A resource file must export an object.'));
+      if (typeof result !== 'object') {
+        return callback(new Error('A resource file must export an object.'));
+      }
+
+      callback(null, result);
+    } catch (err) {
+      callback(err);
     }
-
-    callback(null, result);
   } else {
     fs.readFile(filename, 'utf8', function(err, data) {
       if (err) {
