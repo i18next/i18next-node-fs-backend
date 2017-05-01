@@ -24,7 +24,7 @@
     "eslint": "2.4.0",
     "i18next": "2.3.5",
     "istanbul": "0.4.1",
-    "mocha": "2.3.4",
+    "mocha": "3.1.2",
     "mockery": "1.4.1",
     "sinon": "1.17.2",
     "watchify": "3.7.0",
