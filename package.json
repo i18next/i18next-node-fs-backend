@@ -28,7 +28,7 @@
     "mockery": "1.4.1",
     "sinon": "1.17.2",
     "watchify": "3.7.0",
-    "yargs": "4.3.2"
+    "yargs": "6.2.0"
   },
   "scripts": {
     "test": "mocha",
