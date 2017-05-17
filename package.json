@@ -23,7 +23,7 @@
     "coveralls": "2.11.6",
     "eslint": "2.4.0",
     "i18next": "2.3.5",
-    "istanbul": "0.4.1",
+    "istanbul": "0.4.5",
     "mocha": "2.3.4",
     "mockery": "1.4.1",
     "sinon": "1.17.2",
