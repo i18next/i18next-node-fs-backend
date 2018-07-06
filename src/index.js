@@ -126,7 +126,8 @@ class Backend {
         if (err) resources = {};
 
         missings.forEach((missing) => {
-          utils.setPath(resources, missing.key.split(this.coreOptions.keySeparator || '.'), missing.fallbackValue);
+          const path = this.coreOptions.keySeparator === false ? [missing.key] : (missing.key.split(this.coreOptions.keySeparator || '.'));
+          utils.setPath(resources, path, missing.fallbackValue);
         });
 
         fs.writeFile(filename, JSON.stringify(resources, null, this.options.jsonIndent), (err) => {
