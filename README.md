@@ -10,6 +10,7 @@ This is a i18next backend to be used node.js. It will load resources from filesy
 - .json
 - .json5
 - .yml
+- .cson
 
 # Getting started
 
