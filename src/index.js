@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import JSON5 from 'json5';
 import YAML from 'js-yaml';
+import CSON from 'cson-parser';
 
 function getDefaults() {
   return {
@@ -44,6 +45,8 @@ function readFile(filename, callback) {
             case '.yaml':
               result = YAML.safeLoad(data);
               break;
+            case '.cson':
+              result = CSON.parse(data);
             default:
               result = JSON.parse(data);
           }
