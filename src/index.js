@@ -47,6 +47,7 @@ function readFile(filename, callback) {
               break;
             case '.cson':
               result = CSON.parse(data);
+              break;
             default:
               result = JSON.parse(data);
           }
