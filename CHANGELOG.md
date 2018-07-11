@@ -1,3 +1,6 @@
+### v1.2.1
+- fix missing break in cson parser
+
 ### v1.2.0
 - support cson parser [224](https://github.com/i18next/i18next-node-fs-backend/pull/224)
 
