@@ -1,3 +1,6 @@
+### v1.2.0
+- support cson parser [224](https://github.com/i18next/i18next-node-fs-backend/pull/224)
+
 ### v1.1.0
 - support for keySeparator = false [222](https://github.com/i18next/i18next-node-fs-backend/issues/222)
 
