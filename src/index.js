@@ -3,17 +3,17 @@ import fs from 'fs';
 import path from 'path';
 import JSON5 from 'json5';
 import YAML from 'js-yaml';
-import CSON from 'cson-parser';
 
 function getDefaults() {
   return {
     loadPath: '/locales/{{lng}}/{{ns}}.json',
     addPath: '/locales/{{lng}}/{{ns}}.missing.json',
-    jsonIndent: 2
+    jsonIndent: 2,
+    parse: JSON.parse
   };
 }
 
-function readFile(filename, callback) {
+function readFile(filename, options, callback) {
   const extension = path.extname(filename);
   let result;
 
@@ -45,11 +45,8 @@ function readFile(filename, callback) {
             case '.yaml':
               result = YAML.safeLoad(data);
               break;
-            case '.cson':
-              result = CSON.parse(data);
-              break;
             default:
-              result = JSON.parse(data);
+              result = options.parse(data);
           }
         } catch (err) {
           err.message = 'error parsing ' + filename + ': ' + err.message;
@@ -81,7 +78,7 @@ class Backend {
   read(language, namespace, callback) {
     let filename = this.services.interpolator.interpolate(this.options.loadPath, { lng: language, ns: namespace });
 
-    readFile(filename, (err, resources) => {
+    readFile(filename, this.options, (err, resources) => {
       if (err) return callback(err, false); // no retry
       callback(null, resources);
     });
@@ -126,7 +123,7 @@ class Backend {
       // lock
       utils.setPath(this.queuedWrites, ['locks', lng, namespace], true);
 
-      readFile(filename, (err, resources) => {
+      readFile(filename, this.options, (err, resources) => {
         if (err) resources = {};
 
         missings.forEach((missing) => {

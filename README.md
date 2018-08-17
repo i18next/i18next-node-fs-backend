@@ -23,12 +23,10 @@ $ npm install i18next-node-fs-backend
 Wiring up:
 
 ```js
-var i18next = require('i18next');
-var Backend = require('i18next-node-fs-backend');
+var i18next = require("i18next");
+var Backend = require("i18next-node-fs-backend");
 
-i18next
-  .use(Backend)
-  .init(i18nextOptions);
+i18next.use(Backend).init(i18nextOptions);
 ```
 
 As with all modules you can either pass the constructor function (class) to the i18next.use or a concrete instance.
@@ -44,44 +42,44 @@ As with all modules you can either pass the constructor function (class) to the 
   addPath: '/locales/{{lng}}/{{ns}}.missing.json',
 
   // jsonIndent to use when storing json files
-  jsonIndent: 2
+  jsonIndent: 2,
+
+  // custom parser
+  parse: function(data) { return data; }
 }
 ```
 
 **hint** {{lng}}, {{ns}} use the same prefix, suffix you define in interpolation for translations!!!
-
 
 Options can be passed in:
 
 **preferred** - by setting options.backend in i18next.init:
 
 ```js
-var i18next = require('i18next');
-var Backend = require('i18next-node-fs-backend');
+var i18next = require("i18next");
+var Backend = require("i18next-node-fs-backend");
 
-i18next
-  .use(Backend)
-  .init({
-    backend: options
-  });
+i18next.use(Backend).init({
+  backend: options
+});
 ```
 
 on construction:
 
 ```js
-var Backend = require('i18next-node-fs-backend');
+var Backend = require("i18next-node-fs-backend");
 var backend = new Backend(null, options);
 ```
 
 by calling init:
 
 ```js
-var Backend = require('i18next-node-fs-backend');
+var Backend = require("i18next-node-fs-backend");
 var backend = new Backend();
 backend.init(options);
 ```
 
---------------
+---
 
 <h3 align="center">Gold Sponsors</h3>
 
