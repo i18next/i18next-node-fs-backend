@@ -76,7 +76,12 @@ class Backend {
   }
 
   read(language, namespace, callback) {
-    let filename = this.services.interpolator.interpolate(this.options.loadPath, { lng: language, ns: namespace });
+    let loadPath = this.options.loadPath;
+    if (typeof this.options.loadPath === 'function') {
+	    loadPath = this.options.loadPath(language, namespace);
+    }
+
+    let filename = this.services.interpolator.interpolate(loadPath, { lng: language, ns: namespace });
 
     readFile(filename, this.options, (err, resources) => {
       if (err) return callback(err, false); // no retry
@@ -114,7 +119,12 @@ class Backend {
     let lock = utils.getPath(this.queuedWrites, ['locks', lng, namespace]);
     if (lock) return;
 
-    let filename = this.services.interpolator.interpolate(this.options.addPath, { lng: lng, ns: namespace });
+    let addPath = this.options.addPath;
+    if (typeof this.options.addPath === 'function') {
+      addPath = this.options.addPath(language, namespace);
+    }
+
+    let filename = this.services.interpolator.interpolate(addPath, { lng: lng, ns: namespace });
 
     let missings = utils.getPath(this.queuedWrites, [lng, namespace]);
     utils.setPath(this.queuedWrites, [lng, namespace], []);
