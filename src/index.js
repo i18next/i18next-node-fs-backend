@@ -119,7 +119,12 @@ class Backend {
     let lock = utils.getPath(this.queuedWrites, ['locks', lng, namespace]);
     if (lock) return;
 
-    let filename = this.services.interpolator.interpolate(this.options.addPath, { lng: lng, ns: namespace });
+    let addPath = this.options.addPath;
+    if (typeof this.options.addPath === 'function') {
+      addPath = this.options.addPath(language, namespace);
+    }
+
+    let filename = this.services.interpolator.interpolate(addPath, { lng: lng, ns: namespace });
 
     let missings = utils.getPath(this.queuedWrites, [lng, namespace]);
     utils.setPath(this.queuedWrites, [lng, namespace], []);
