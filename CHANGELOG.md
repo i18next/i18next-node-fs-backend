@@ -1,3 +1,7 @@
+### v2.1.0
+
+- optional pass in loadPath, addPath as function
+
 ### v2.0.0
 
 - remove cson parser
