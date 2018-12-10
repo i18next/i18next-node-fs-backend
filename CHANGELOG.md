@@ -1,3 +1,7 @@
+### v2.1.1
+
+- fixes loadPath [230](https://github.com/i18next/i18next-node-fs-backend/pull/230)
+
 ### v2.1.0
 
 - optional pass in loadPath, addPath as function
