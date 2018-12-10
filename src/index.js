@@ -121,7 +121,7 @@ class Backend {
 
     let addPath = this.options.addPath;
     if (typeof this.options.addPath === 'function') {
-      addPath = this.options.addPath(language, namespace);
+      addPath = this.options.addPath(lng, namespace);
     }
 
     let filename = this.services.interpolator.interpolate(addPath, { lng: lng, ns: namespace });
