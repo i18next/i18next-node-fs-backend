@@ -38,5 +38,6 @@
     "postversion": "git push && git push --tags && rm -rf build/temp"
   },
   "author": "Jan Mühlemann <jan.muehlemann@gmail.com> (https://github.com/jamuhl)",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "https://github.com/i18next/i18next-node-fs-backend.git"
 }
