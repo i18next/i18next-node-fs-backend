@@ -1,3 +1,7 @@
+### v2.1.2
+
+- Bump dep versions due to DOS vulnerability [237](https://github.com/i18next/i18next-node-fs-backend/pull/237)
+
 ### v2.1.1
 
 - fixes loadPath [230](https://github.com/i18next/i18next-node-fs-backend/pull/230)
