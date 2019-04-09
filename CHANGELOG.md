@@ -1,3 +1,7 @@
+### v2.1.3
+
+- Update js-yaml to a non vulnerable version [238](https://github.com/i18next/i18next-node-fs-backend/pull/238)
+
 ### v2.1.2
 
 - Bump dep versions due to DOS vulnerability [237](https://github.com/i18next/i18next-node-fs-backend/pull/237)
