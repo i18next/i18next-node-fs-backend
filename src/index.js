@@ -16,8 +16,17 @@ function getDefaults() {
 function readFile(filename, options, callback) {
   const extension = path.extname(filename);
   let result;
-
-  if (/^\.(js|ts)$/.test(extension)) {
+  if (options.parse) {
+    try {
+      result = options.parse(data);
+      if (typeof result !== 'object') {
+        return callback(new Error('A resource file must export an object.'));
+      }
+      callback(null, result);
+    } catch (err) {
+      callback(err);
+    }
+  } else if (/^\.(js|ts)$/.test(extension)) {
     try {
       const file = require(filename);
       result = file.default ? file.default : file;
