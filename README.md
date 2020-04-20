@@ -1,3 +1,9 @@
+# DEPRECATED
+
+Can be replaced with: [i18next-fs-backend](https://github.com/i18next/i18next-fs-backend)
+
+---
+
 # Introduction
 
 [![Travis](https://img.shields.io/travis/i18next/i18next-node-fs-backend/master.svg?style=flat-square)](https://travis-ci.org/i18next/i18next-node-fs-backend)
