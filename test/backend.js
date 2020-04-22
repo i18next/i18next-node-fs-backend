@@ -1,6 +1,7 @@
 var mockery = require('mockery');
 var expect = require('chai').expect;
 var path = require('path');
+var sinon = require('sinon');
 
 var Interpolator = require('i18next/dist/commonjs/Interpolator').default;
 
@@ -128,6 +129,21 @@ describe('backend', function() {
     backend.create(['en', 'de'], 'test4', 'key3', '3')
     backend.create(['en', 'de'], 'test4', 'key4', '4', function() {
       expect(test4Save).to.equal(2);
+      done();
+    });
+  });
+
+  it('calls custom parse function if it is passed', function(done) {
+    const parseStub = sinon.stub().returns({key: 'passing', evaluated: 2})
+    backend = new Backend({
+      interpolator: new Interpolator()
+    }, {
+      loadPath: path.join(__dirname, '/locales/{{lng}}/{{ns}}.json'),
+      parse: parseStub
+    });
+
+    backend.read('en', 'test', function(err, data) {
+      expect(parseStub.callCount).to.equal(1)
       done();
     });
   });
